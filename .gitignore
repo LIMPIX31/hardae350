@@ -1,0 +1,11 @@
+# Cargo
+/target
+Cargo.lock
+
+# Generated files
+sram.mem
+
+# Gowin
+crates/**/impl/*
+!crates/**/impl/project_process_config.json
+.gowin
