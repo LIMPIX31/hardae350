@@ -9,3 +9,4 @@ sram.mem
 crates/**/impl/*
 !crates/**/impl/project_process_config.json
 .gowin
+*.gprj.user

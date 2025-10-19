@@ -1,9 +1,6 @@
 # AE350 SoC Bare Metal Rust Examples
 Everything in this repository is designed for the [Sipeed Tang Mega 138K Pro](https://wiki.sipeed.com/hardware/en/tang/tang-mega-138k/mega-138k-pro.html) board featuring the [Gowin GW5AST](https://www.gowinsemi.com/en/product/detail/76/) chip along with the on-chip [AndesTech AE350 A25 SoC](https://www.andestech.com/en/products-solutions/andeshape-platforms/ae350-axi-based-platform-pre-integrated-with-n25f-nx25f-a25-ax25/).
 
-> [!WARNING]
-> There are still some problems with the examples. I'm working on it.
-
 ### Blink
 Blinks the **J14** led.
 

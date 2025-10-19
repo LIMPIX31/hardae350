@@ -57,7 +57,7 @@ module top
     , .o_core_clk_800m(core_clk)
     , .o_bus_clk_200m(bus_clk)
     , .o_ddr_clk_50m(ddr_clk)
-    , .o_rtc_clk_10m(rtc_clk)
+    , .o_rtc_clk_32k(rtc_clk)
     );
 
     mem_rom #

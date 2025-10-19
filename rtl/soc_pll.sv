@@ -7,14 +7,34 @@ module soc_pll
 , output logic o_core_clk_800m
 , output logic o_bus_clk_200m
 , output logic o_ddr_clk_50m
-, output logic o_rtc_clk_10m
+, output logic o_rtc_clk_32k
 );
 
     logic gw_vcc;
     logic gw_gnd;
 
+    logic [9:0] rtc_cnt;
+    logic [0:0] rtc_clk;
+
     assign gw_vcc = 1'b1;
     assign gw_gnd = 1'b0;
+
+    assign o_rtc_clk_32k = rtc_clk;
+
+    // RTC clock is quite inaccurate and approximated,
+    // so it must not be used to track real time.
+    always_ff @(posedge i_clk_50m) begin
+        if (i_rst) begin
+            rtc_cnt <= 0;
+            rtc_clk <= 0;
+        end else if (rtc_cnt == 10'd763) begin
+            rtc_cnt <= 0;
+            rtc_clk <= ~rtc_clk;
+        end else begin
+            rtc_cnt <= rtc_cnt + 10'd1;
+            rtc_clk <= rtc_clk;
+        end
+    end
 
     PLL #
     ( .FCLKIN("50")
@@ -33,7 +53,7 @@ module soc_pll
     , .CLKOUT0_EN("TRUE")
     , .CLKOUT1_EN("TRUE")
     , .CLKOUT2_EN("TRUE")
-    , .CLKOUT3_EN("TRUE")
+    , .CLKOUT3_EN("FALSE")
     , .CLKOUT4_EN("FALSE")
     , .CLKOUT5_EN("FALSE")
     , .CLKOUT6_EN("FALSE")
@@ -116,7 +136,7 @@ module soc_pll
     , .CLKOUT0(o_bus_clk_200m)
     , .CLKOUT1(o_core_clk_800m)
     , .CLKOUT2(o_ddr_clk_50m)
-    , .CLKOUT3(o_rtc_clk_10m)
+    , .CLKOUT3()
     , .CLKOUT4()
     , .CLKOUT5()
     , .CLKOUT6()
@@ -152,7 +172,7 @@ module soc_pll
     , .ENCLK0(gw_vcc)
     , .ENCLK1(gw_vcc)
     , .ENCLK2(gw_vcc)
-    , .ENCLK3(gw_vcc)
+    , .ENCLK3(gw_gnd)
     , .ENCLK4(gw_gnd)
     , .ENCLK5(gw_gnd)
     , .ENCLK6(gw_gnd)
