@@ -8,7 +8,6 @@ module top
 
 , input  logic i_tck
 , input  logic i_tms
-, input  logic i_trst
 , input  logic i_tdi
 , output logic o_tdo
 );
@@ -33,10 +32,11 @@ module top
 
     logic [31:0] rom_haddr;
     logic [31:0] rom_hrdata;
+    logic [ 1:0] rom_htrans;
     logic [ 0:0] rom_hresp;
     logic [ 0:0] rom_hready;
 
-    logic [5:0]  led_gpio;
+    logic [ 5:0] led_gpio;
     logic [25:0] unused_gpio;
 
     assign o_led_n = ~led_gpio;
@@ -62,6 +62,7 @@ module top
 
     mem_rom #
     ( .WORDS(512)
+    , .INIT("../blink/sram.mem")
     ) u_rom
     ( .i_clk(bus_clk)
 
@@ -103,7 +104,7 @@ module top
 
     , .i_tck(i_tck)
     , .i_tms(i_tms)
-    , .i_trst(i_trst)
+    , .i_trst(~rst_n)
     , .i_tdi(i_tdi)
     , .o_tdo(o_tdo)
 

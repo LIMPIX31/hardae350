@@ -6,7 +6,7 @@ Cargo.lock
 sram.mem
 
 # Gowin
-crates/**/impl/*
-!crates/**/impl/project_process_config.json
+/**/impl/*
+!/**/impl/*_process_config.json
 .gowin
 *.gprj.user

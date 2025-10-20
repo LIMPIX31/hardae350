@@ -13,7 +13,7 @@ top = "top"
 verilog = [
   "hw/**/*.sv",
   "hw/**/*[!_tmp].v",
-  "../../rtl/**/*.sv"
+  "../rtl/**/*.sv"
 ]
 cst = "phy.cst"
 # sdc = "timings.sdc"

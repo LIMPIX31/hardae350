@@ -1,6 +1,6 @@
 [workspace]
 resolver = "3"
-members = ["crates/*"]
+members = ["blink"]
 
 [workspace.package]
 edition = "2024"
@@ -47,11 +47,20 @@ needless_doctest_main              = "allow"
 tabs_in_doc_comments               = "allow"
 redundant_closure_for_method_calls = "allow"
 
+[profile.dev]
+opt-level     = 3
+lto           = "fat"
+codegen-units = 1
+strip         = false
+incremental   = false
+panic         = "abort"
+debug         = true
+
 [profile.release]
-opt-level     = 3 # Maximum optimizations
-lto           = "fat" # Perform LTO across all crates
-codegen-units = 1 # Reduce number of codegen units to increase optimizations.
-strip         = true # Strip symbols from binary
-incremental   = false # Disable incremental building
-panic         = "abort" # Use "abort" panic strategy
-debug         = 0 # Do not generate debug information
+opt-level     = 3
+lto           = "fat"
+codegen-units = 1
+strip         = true
+incremental   = false
+panic         = "abort"
+debug         = false
