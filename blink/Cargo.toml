@@ -7,7 +7,7 @@ edition.workspace = true
 panic-halt.workspace = true
 riscv.workspace = true
 riscv-rt.workspace = true
-volatile-register.workspace = true
+anders.workspace = true
 
 [[bin]]
 name = "blink"

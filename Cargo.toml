@@ -8,8 +8,8 @@ edition = "2024"
 [workspace.dependencies]
 panic-halt = "1"
 riscv = "0.15"
-riscv-rt = { version = "0.16", features = ["single-hart"] }
-volatile-register = "0.2"
+riscv-rt = { version = "0.16", features = ["single-hart", "v-trap"] }
+anders = { git = "https://github.com/sigma-logic/anders" }
 
 [workspace.lints.rust]
 missing_docs              = "warn"
