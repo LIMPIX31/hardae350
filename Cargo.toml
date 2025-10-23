@@ -1,6 +1,6 @@
 [workspace]
 resolver = "3"
-members = ["blink"]
+members = ["blink", "uart"]
 
 [workspace.package]
 edition = "2024"
@@ -8,8 +8,8 @@ edition = "2024"
 [workspace.dependencies]
 panic-halt = "1"
 riscv = "0.15"
-riscv-rt = { version = "0.16", features = ["single-hart", "v-trap"] }
-anders = { git = "https://github.com/sigma-logic/anders" }
+riscv-rt = { version = "0.16", features = ["single-hart"] }
+anders = { path = "/home/limpix/workspaces/pof/anders" }
 
 [workspace.lints.rust]
 missing_docs              = "warn"

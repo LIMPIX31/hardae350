@@ -1,0 +1,17 @@
+[package]
+name = "uart"
+version = "0.1.0"
+edition.workspace = true
+
+[dependencies]
+panic-halt.workspace = true
+riscv.workspace = true
+riscv-rt.workspace = true
+anders.workspace = true
+
+[[bin]]
+name = "uart"
+path = "sw/main.rs"
+test = false
+doctest = false
+bench = false

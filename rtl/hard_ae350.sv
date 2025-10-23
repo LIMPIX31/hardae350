@@ -10,6 +10,8 @@ module hard_ae350
 , output logic o_apb_rst_n
 , output logic o_ddr_rst_n
 
+, output logic o_wfi
+
 , input  logic i_tck
 , input  logic i_tms
 , input  logic i_trst
@@ -37,6 +39,9 @@ module hard_ae350
 , input  logic [31:0] i_gpio
 , output logic [31:0] o_gpio_oe
 , output logic [31:0] o_gpio
+
+, input  logic i_uart1_rx
+, output logic o_uart1_tx
 );
 
     AE350_SOC u_hard
@@ -78,7 +83,7 @@ module hard_ae350
     // Input to wake up CPU, 0 is wake up
     , .WAKEUP_IN(1'b0)
     // CPU going into WFI mode, posedge is WFI valid
-    , .CORE0_WFI_MODE()
+    , .CORE0_WFI_MODE(o_wfi)
     // Output to wake up RTC clock, 1 is wake up
     , .RTC_WAKEUP()
 
@@ -176,9 +181,9 @@ module hard_ae350
     , .I2C_SDA()
 
     // UART1 signals
-    , .UART1_TXD  ()
+    , .UART1_TXD  (o_uart1_tx)
     , .UART1_RTSN ()
-    , .UART1_RXD  (1'b0)
+    , .UART1_RXD  (i_uart1_rx)
     , .UART1_CTSN (1'b0)
     , .UART1_DSRN (1'b0)
     , .UART1_DCDN (1'b0)
